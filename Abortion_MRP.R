@@ -110,7 +110,7 @@ model_opinion <- lmer(
 )
 
 # Set Census API key
-census_api_key("225ea062b9d364a696fdc63dddecf9873fa37ddc", install = TRUE, overwrite = TRUE)
+census_api_key("insertAPIkeyhere", install = TRUE, overwrite = TRUE)
 
 # Manually read in the stored API key
 readRenviron("~/.Renviron")  # Reload the environment
