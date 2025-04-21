@@ -46,6 +46,8 @@ This repository contains a complete pipeline for analyzing state-level policy re
 
 Each script is modular and reproducible, enabling easy substitution of topic-specific variables, datasets, and file paths. This design supports consistent comparative analysis across a wide range of issue areas.
 
+The pipeline can be easily adapted to other policy areas by modifying the input datasets, file paths, variable names, and topic-specific coding logic in each script.
+
 ---
 
 ## Contribution
