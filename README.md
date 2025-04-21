@@ -12,47 +12,35 @@ My research examines how different types of policies—categorized by **salience
 
 ## Repository Overview
 
-This repository contains a complete pipeline for analyzing state-level policy representation using MRP and regression-based measures of responsiveness and congruence. While the repository currently showcases the full analysis for **abortion policy**, the same process has been completed for **eight distinct policy topics**, with abortion provided here as an illustrative example.
+This repository contains a complete, modular pipeline for analyzing state-level policy representation using survey data, policy datasets, MRP modeling, and statistical analysis. While the repository currently showcases the full analysis for **abortion policy**, the same process has been completed for **eight distinct policy topics**, with abortion provided here as a case study.
+
+All scripts are housed in the `Scripts/` folder, and original datasets are located in the `Data/Original/` folder.  
+Each folder includes a dedicated `README.md` file explaining its contents in detail, including data sources and code functionality.
 
 ---
 
 ## Core Components (Abortion Case Study)
 
-1. **`Abortion_Data_Preprocessing.R`**  
-   Cleans and recodes raw ANES survey data, preparing demographic and opinion variables for MRP.
-
-2. **`Abortion_MRP.R`**  
-   Estimates state-level public opinion on abortion using MRP with survey and U.S. Census ACS data.
-
-3. **`Abortion_Merge.R`**  
-   Merges MRP-generated opinion estimates with state-level abortion policy data.
-
-4. **`Abortion_Responsiveness.R`**  
-   Uses logistic regression to assess whether policy adoption aligns with shifts in public opinion.
-
-5. **`Abortion_Congruence.R`**  
-   Calculates whether state policy direction matches majority public opinion.
-
-6. **`Final_Results.R`**  
-   Aggregates summary statistics and visualizations across **all eight policy topics**.  
-   Once individual results are saved, this script compiles:
-   - Overall responsiveness and congruence tables  
-   - Category summaries by policy type and salience  
-   - Final publication-ready visualizations
+- `Abortion_Data_Preprocessing.R`: Cleans and recodes raw survey data.
+- `Abortion_MRP.R`: Runs MRP to estimate state-level public opinion.
+- `Abortion_Merge.R`: Combines MRP estimates with policy outcomes.
+- `Abortion_Responsiveness.R`: Models the relationship between opinion and policy.
+- `Abortion_Congruence.R`: Calculates whether policy matches majority opinion.
+- `Compile_All_Policy_Results.R`: Summarizes results across all 8 policy areas.
 
 ---
 
 ## Adaptability
 
-Each script is modular and reproducible, enabling easy substitution of topic-specific variables, datasets, and file paths. This design supports consistent comparative analysis across a wide range of issue areas.
+Each script is modular and reproducible, enabling easy substitution of topic-specific variables, datasets, and file paths. This design supports consistent comparative analysis across a wide range of policy areas.
 
-The pipeline can be easily adapted to other policy areas by modifying the input datasets, file paths, variable names, and topic-specific coding logic in each script.
+The pipeline can be adapted to new policy topics by updating input data and adjusting variable names or recoding logic in each script.
 
 ---
 
 ## Contribution
 
-This research contributes to the fields of **political representation**, **public opinion**, and **state policy analysis**, offering a replicable framework for understanding when and why policies reflect constituent preferences. The abortion policy example serves as a detailed case study to demonstrate the full methodology.
+This project contributes to scholarship on **political representation**, **public opinion**, and **state policy outcomes**, offering a replicable, survey-based framework for evaluating whether and when governments respond to constituent preferences. The abortion policy case study provides a fully implemented example.
 
 ---
 
@@ -65,4 +53,4 @@ For questions, collaborations, or feedback, feel free to reach out:
 
 ---
 
-*Expect frequent updates as I refine my analysis and expand the dataset.*
+*Expect frequent updates as I refine the analysis and expand coverage across additional policy domains.*
