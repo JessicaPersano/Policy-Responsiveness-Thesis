@@ -1,0 +1,51 @@
+state,year,policy_topic,policy_score,salience,morality
+Alabama,2018,Minimum Wage,0,1,0
+Alaska,2018,Minimum Wage,0,1,0
+Arizona,2018,Minimum Wage,1,1,0
+Arkansas,2018,Minimum Wage,0,1,0
+California,2018,Minimum Wage,1,1,0
+Colorado,2018,Minimum Wage,1,1,0
+Connecticut,2018,Minimum Wage,1,1,0
+Delaware,2018,Minimum Wage,0,1,0
+Florida,2018,Minimum Wage,0,1,0
+Georgia,2018,Minimum Wage,0,1,0
+Hawaii,2018,Minimum Wage,1,1,0
+Idaho,2018,Minimum Wage,0,1,0
+Illinois,2018,Minimum Wage,0,1,0
+Indiana,2018,Minimum Wage,0,1,0
+Iowa,2018,Minimum Wage,0,1,0
+Kansas,2018,Minimum Wage,0,1,0
+Kentucky,2018,Minimum Wage,0,1,0
+Louisiana,2018,Minimum Wage,0,1,0
+Maine,2018,Minimum Wage,1,1,0
+Maryland,2018,Minimum Wage,1,1,0
+Massachusetts,2018,Minimum Wage,1,1,0
+Michigan,2018,Minimum Wage,0,1,0
+Minnesota,2018,Minimum Wage,0,1,0
+Mississippi,2018,Minimum Wage,0,1,0
+Missouri,2018,Minimum Wage,0,1,0
+Montana,2018,Minimum Wage,0,1,0
+Nebraska,2018,Minimum Wage,0,1,0
+Nevada,2018,Minimum Wage,0,1,0
+New Hampshire,2018,Minimum Wage,0,1,0
+New Jersey,2018,Minimum Wage,0,1,0
+New Mexico,2018,Minimum Wage,0,1,0
+New York,2018,Minimum Wage,1,1,0
+North Carolina,2018,Minimum Wage,0,1,0
+North Dakota,2018,Minimum Wage,0,1,0
+Ohio,2018,Minimum Wage,0,1,0
+Oklahoma,2018,Minimum Wage,0,1,0
+Oregon,2018,Minimum Wage,1,1,0
+Pennsylvania,2018,Minimum Wage,0,1,0
+Rhode Island,2018,Minimum Wage,1,1,0
+South Carolina,2018,Minimum Wage,0,1,0
+South Dakota,2018,Minimum Wage,0,1,0
+Tennessee,2018,Minimum Wage,0,1,0
+Texas,2018,Minimum Wage,0,1,0
+Utah,2018,Minimum Wage,0,1,0
+Vermont,2018,Minimum Wage,1,1,0
+Virginia,2018,Minimum Wage,0,1,0
+Washington,2018,Minimum Wage,1,1,0
+West Virginia,2018,Minimum Wage,0,1,0
+Wisconsin,2018,Minimum Wage,0,1,0
+Wyoming,2018,Minimum Wage,0,1,0
