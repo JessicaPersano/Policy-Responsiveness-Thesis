@@ -72,8 +72,7 @@ Analyzes **policy congruence**—whether the policy matches majority public opin
 
 ---
 
-### 6. `Compile_All_Policy_Results.R`  
-*(Previously named `Final_Results.R`)*
+### 6. `Aggregate_Policy_Results.R`  
 
 **Purpose:**  
 Aggregates and summarizes results across **all eight policy topics** (not just abortion).
