@@ -1,95 +1,173 @@
-# Scripts Folder
+# Scripts
 
-This folder contains all R scripts used to process, analyze, and summarize state-level policy representation using survey data and policy outcome data. While the abortion policy pipeline is featured here as a case study, the same modular structure was used for all eight policy topics in the full analysis.
-
-Below is a description of each script:
+This folder contains the R scripts for analyzing state-level policy representation. The abortion policy pipeline is provided as a fully documented case study; the same modular structure was used for all eight policy topics.
 
 ---
 
+## Pipeline Overview
+
+```
+┌─────────────────────────────┐
+│ 1. Data Preprocessing       │  ← Clean raw survey data
+└──────────────┬──────────────┘
+               ▼
+┌─────────────────────────────┐
+│ 2. MRP Model                │  ← Estimate state-level opinion
+└──────────────┬──────────────┘
+               ▼
+┌─────────────────────────────┐
+│ 3. Merge                    │  ← Combine opinion + policy data
+└──────────────┬──────────────┘
+               ▼
+┌─────────────────────────────┐
+│ 4. Responsiveness           │  ← Logistic regression analysis
+└──────────────┬──────────────┘
+               ▼
+┌─────────────────────────────┐
+│ 5. Congruence               │  ← Policy-opinion alignment
+└──────────────┬──────────────┘
+               ▼
+┌─────────────────────────────┐
+│ 6. Aggregate Results        │  ← Compile all 8 policy areas
+└─────────────────────────────┘
+```
+
+---
+
+## Scripts
+
 ### 1. `Abortion_Data_Preprocessing.R`
 
-**Purpose:**  
-Prepares raw survey data for use in Multilevel Regression and Poststratification (MRP).
+**Purpose:** Prepare raw ANES survey data for MRP modeling.
 
-**Key Steps:**  
-- Loads raw ANES 2020 data.
-- Selects and recodes key variables: state, age, gender, race, education, Hispanic origin, and abortion opinion.
-- Converts FIPS codes to state names and categorizes demographics.
-- Saves a cleaned CSV for use in MRP modeling.
+**Packages:** `tidyverse`, `haven`
+
+**Key Steps:**
+- Load ANES 2020 Time Series data (Stata format)
+- Select and rename variables: state (FIPS), age, gender, race, Hispanic origin, education, abortion opinion
+- Recode categorical variables into standardized categories
+- Convert FIPS codes to state names
+- Export cleaned CSV
 
 ---
 
 ### 2. `Abortion_MRP.R`
 
-**Purpose:**  
-Implements MRP to estimate state-level public opinion on abortion.
+**Purpose:** Implement Multilevel Regression and Poststratification to estimate state-level public opinion.
 
-**Key Steps:**  
-- Standardizes cleaned survey data for model input.
-- Fits a multilevel logistic regression predicting abortion opinion by demographics.
-- Downloads ACS Census data using the `tidycensus` package.
-- Poststratifies to generate weighted state-level opinion estimates.
-- Saves final public opinion estimates for merging.
+**Packages:** `tidyverse`, `lme4`, `tidycensus`
+
+**Key Steps:**
+- Standardize demographic categories to match Census
+- Fit multilevel logistic regression:
+  ```r
+  abortion_opinion ~ gender + hispanic + (1|edu) + (1|race) + (1|age_group) + (1|state)
+  ```
+- Download ACS 5-Year demographic data via Census API
+- Poststratify predictions using Census population weights
+- Export state-level opinion estimates
+
+**Note:** Requires Census API key. Get one at: https://api.census.gov/data/key_signup.html
 
 ---
 
 ### 3. `Abortion_Merge.R`
 
-**Purpose:**  
-Merges MRP-generated public opinion estimates with state-level abortion policy outcomes.
+**Purpose:** Merge MRP opinion estimates with state policy outcomes.
 
-**Key Steps:**  
-- Loads state-level opinion estimates and abortion policy data.
-- Standardizes state names and formats.
-- Merges datasets by state.
-- Saves merged dataset for use in regression and congruence analysis.
+**Packages:** `tidyverse`
+
+**Key Steps:**
+- Load MRP state estimates and policy data
+- Standardize state names
+- Left join on state
+- Validate for missing matches
+- Export merged dataset
 
 ---
 
 ### 4. `Abortion_Responsiveness.R`
 
-**Purpose:**  
-Analyzes **policy responsiveness**—whether policy adoption is predicted by public opinion.
+**Purpose:** Analyze policy responsiveness—does public opinion predict policy adoption?
 
-**Key Steps:**  
-- Loads the merged abortion data.
-- Runs a logistic regression of policy on estimated opinion.
-- Saves regression coefficients and model summary.
-- Visualizes the relationship between public opinion and abortion policy using a jittered scatter plot with a 95% confidence interval.
+**Packages:** `tidyverse`, `ggplot2`, `ggthemes`
+
+**Key Steps:**
+- Fit logistic regression: `policy_score ~ estimated_opinion`
+- Extract coefficients and standard errors
+- Create scatter plot with logistic regression curve and 95% CI
+- Export results and visualization
 
 ---
 
 ### 5. `Abortion_Congruence.R`
 
-**Purpose:**  
-Analyzes **policy congruence**—whether the policy matches majority public opinion in each state.
+**Purpose:** Analyze policy congruence—does policy match majority opinion?
 
-**Key Steps:**  
-- Defines binary congruence using a 0.5 threshold on opinion estimates.
-- Calculates congruence at the state and overall level.
-- Saves congruence summary to CSV.
-- Creates bar plots showing overall and state-level congruence.
+**Packages:** `tidyverse`, `ggplot2`, `ggthemes`
 
----
-
-### 6. `Aggregate_Policy_Analysis_Results.R`  
-
-**Purpose:**  
-Aggregates and summarizes results across **all eight policy topics** (not just abortion).
-
-**Key Steps:**  
-- Loads all responsiveness and congruence CSVs.
-- Generates summary tables of responsiveness coefficients and congruence rates by topic.
-- Categorizes each policy by type (moral/technical) and salience (high/low).
-- Creates final publication-ready bar charts and a compiled summary dataset used in the results section of the thesis.
+**Key Steps:**
+- Define congruence using 0.5 threshold on opinion estimates
+- Calculate state-level and overall congruence rates
+- Create bar charts for overall and state-level congruence
+- Export results and visualizations
 
 ---
 
-### Adaptability
+### 6. `Aggregate_Policy_Analysis_Results.R`
 
-Each script is modular and can be adapted to other policy topics by:
-- Replacing input survey and policy data files,
-- Adjusting variable names and recoding logic,
-- Repeating the MRP and regression steps using the same structure.
+**Purpose:** Compile and summarize results across all eight policy topics.
 
-For more details on how to replicate the analysis for other policy areas, see the main project `README.md`.
+**Packages:** `dplyr`, `readr`, `ggplot2`
+
+**Key Steps:**
+- Load all responsiveness and congruence CSV files
+- Generate summary tables with coefficients and significance
+- Categorize policies by type (moral/technical) and salience (high/low)
+- Create publication-ready bar charts
+- Export compiled summary dataset
+
+---
+
+## Required Packages
+
+```r
+install.packages(c(
+  "tidyverse",
+  "haven",
+  "lme4", 
+  "tidycensus",
+  "ggplot2",
+  "ggthemes",
+  "dplyr",
+  "readr"
+))
+```
+
+---
+
+## Adapting to Other Policy Topics
+
+Each script is modular. To analyze a new policy:
+
+1. **Preprocessing:** Update survey variable names and recoding logic
+2. **MRP:** Adjust opinion variable name
+3. **Merge:** Point to new policy data file
+4. **Responsiveness/Congruence:** Update file paths
+5. **Aggregate:** Add new policy to `name_mapping` tibble
+
+---
+
+## Output Files
+
+Scripts generate the following outputs (saved to `Data/Results/`):
+
+| File | Description |
+|------|-------------|
+| `[policy]_responsiveness_results.csv` | Regression coefficients |
+| `[policy]_responsiveness_plot.png` | Scatter plot with regression |
+| `[policy]_state_congruence.csv` | State-level congruence rates |
+| `[policy]_congruence_plot.png` | Overall congruence bar chart |
+| `[policy]_state_congruence_plot.png` | State-level congruence chart |
+| `new_compiled_policy_results.csv` | All policies summary |
+| `new_category_summary_table.csv` | Results by policy type/salience |
