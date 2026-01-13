@@ -1,87 +1,65 @@
-# The Determinants of Policy Representation: Evaluating the Role of Policy Type in the U.S. States
+# The Determinants of Policy Representation
+### Evaluating the Role of Policy Type in the U.S. States
 
 **UCLA Political Science Honors Thesis**  
-**Author:** Jessica Persano  
-**Advisor:** [Advisor name if you want to include]  
-**Date:** April 2025
+Jessica Persano | April 2025
 
 ---
 
-## Abstract
+## Overview
 
-This thesis examines how different types of policies—categorized by **salience** and **morality**—affect the degree to which state policies align with public opinion. Using **Multilevel Regression and Poststratification (MRP)** to estimate state-level public opinion, I analyze two dimensions of representation:
+This thesis examines how policy type—categorized by **salience** and **morality**—affects the degree to which state policies align with public opinion. Using Multilevel Regression and Poststratification (MRP), I estimate state-level opinion and analyze **policy responsiveness** and **policy congruence** across eight issue areas.
 
-- **Policy Responsiveness**: Whether policy changes in response to shifts in public opinion
-- **Policy Congruence**: Whether policy outcomes match majority opinion
-
-The analysis covers eight distinct policy areas, with abortion policy provided as a fully documented case study.
-
-📄 **[Read the full thesis (PDF)](Persano_Policy_Responsiveness_Thesis.pdf)**
+📄 **[Read the full thesis](Persano_Policy_Responsiveness_Thesis.pdf)**
 
 ---
 
 ## Repository Structure
 
 ```
-Policy-Responsiveness-Thesis/
-├── Original_Data/          # Raw datasets with documentation
-│   └── README.md           # Data sources and descriptions
-├── Scripts/                # R analysis pipeline
-│   ├── Abortion_Data_Preprocessing.R
-│   ├── Abortion_MRP.R
-│   ├── Abortion_Merge.R
-│   ├── Abortion_Responsiveness.R
-│   ├── Abortion_Congruence.R
-│   ├── Compile_All_Policy_Results.R
-│   └── README.md           # Script documentation
+├── Original_Data/     # Policy datasets + data source documentation
+├── Scripts/           # R analysis pipeline (preprocessing → results)
 ├── Persano_Policy_Responsiveness_Thesis.pdf
+├── LICENSE
 └── README.md
 ```
 
----
-
-## Methodology
-
-### Data
-- **Survey Data:** [Specify sources, e.g., CCES, ANES, etc.]
-- **Policy Data:** [Specify sources]
-- **Demographic Data:** U.S. Census / ACS
-
-### Analysis Pipeline
-
-| Script | Purpose |
-|--------|---------|
-| `Abortion_Data_Preprocessing.R` | Cleans and recodes raw survey data |
-| `Abortion_MRP.R` | Estimates state-level opinion via MRP |
-| `Abortion_Merge.R` | Combines MRP estimates with policy outcomes |
-| `Abortion_Responsiveness.R` | Models opinion-policy relationship |
-| `Abortion_Congruence.R` | Calculates policy-opinion alignment |
-| `Compile_All_Policy_Results.R` | Aggregates results across all 8 policy areas |
+See the README in each folder for detailed documentation.
 
 ---
 
-## Replication
+## Quick Start
 
-Scripts are modular and designed for reproducibility. To adapt for other policy areas:
+**Requirements:** R ≥ 4.0, Census API key ([get one here](https://api.census.gov/data/key_signup.html))
 
-1. Update input data paths
-2. Adjust variable names and recoding logic
-3. Run scripts in sequential order
+```r
+install.packages(c("tidyverse", "haven", "lme4", "tidycensus", "ggplot2", "ggthemes"))
+```
 
-### Requirements
-- R (≥ 4.0)
-- Required packages: `tidyverse`, `brms`, `lme4`, [add others you use]
+Survey data must be downloaded separately (see [`Original_Data/README.md`](Original_Data/README.md) for links).
+
+---
+
+## Policy Areas
+
+| Policy | Type | Salience |
+|--------|------|----------|
+| Abortion | Moral | High |
+| Gun Control | Moral | High |
+| Capital Punishment | Moral | Low |
+| Drug Sentencing | Moral | Low |
+| Minimum Wage | Technical | High |
+| Renewable Energy | Technical | High |
+| Medicaid Expansion | Technical | Low |
+| Paid Family Leave | Technical | Low |
 
 ---
 
 ## Citation
 
-If you use this code or find this research helpful, please cite:
-
 ```
 Persano, Jessica. 2025. "The Determinants of Policy Representation: Evaluating 
-the Role of Policy Type in the U.S. States." Honors Thesis, University of 
-California, Los Angeles.
+the Role of Policy Type in the U.S. States." Honors Thesis, UCLA.
 ```
 
 ---
@@ -89,14 +67,12 @@ California, Los Angeles.
 ## Contact
 
 **Jessica Persano**  
-Predoctoral Research Fellow, Stanford Graduate School of Business
+Predoctoral Research Fellow, Stanford GSB
 
-- 📧 jpersano@stanford.edu
-- 🔗 [jessicapersano.github.io](https://jessicapersano.github.io)
-- 💼 [LinkedIn](https://www.linkedin.com/in/jessica-persano/)
+[jessicapersano.github.io](https://jessicapersano.github.io) · [LinkedIn](https://www.linkedin.com/in/jessica-persano/) · jpersano@stanford.edu
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License. See [LICENSE](LICENSE) for details.
