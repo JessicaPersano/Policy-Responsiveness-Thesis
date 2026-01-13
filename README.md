@@ -1,56 +1,102 @@
-# Policy-Responsiveness-Thesis
+# The Determinants of Policy Representation: Evaluating the Role of Policy Type in the U.S. States
 
-This repository contains the R scripts and datasets for my UCLA Political Science Honors Thesis,  
-**"The Determinants of Policy Representation: Evaluating the Role of Policy Type in the US States."**  
-
-My research examines how different types of policies—categorized by **salience** and **morality**—affect the degree to which state policies align with public opinion. Using **Multilevel Regression and Poststratification (MRP)**, I estimate state-level public opinion and analyze:
-
-- **Policy Responsiveness**: Whether policy changes in response to shifts in public opinion.  
-- **Policy Congruence**: Whether policy outcomes match the majority opinion.
+**UCLA Political Science Honors Thesis**  
+**Author:** Jessica Persano  
+**Advisor:** [Advisor name if you want to include]  
+**Date:** April 2025
 
 ---
 
-## Repository Overview
+## Abstract
 
-This repository contains a complete, modular pipeline for analyzing state-level policy representation using survey data, policy datasets, MRP modeling, and statistical analysis. While the repository currently showcases the full analysis for **abortion policy**, the same process has been completed for **eight distinct policy topics**, with abortion provided here as a case study.
+This thesis examines how different types of policies—categorized by **salience** and **morality**—affect the degree to which state policies align with public opinion. Using **Multilevel Regression and Poststratification (MRP)** to estimate state-level public opinion, I analyze two dimensions of representation:
 
-All scripts are housed in the `Scripts/` folder, and original datasets are located in the `Data/Original/` folder.  
-Each folder includes a dedicated `README.md` file explaining its contents in detail, including data sources and code functionality.
+- **Policy Responsiveness**: Whether policy changes in response to shifts in public opinion
+- **Policy Congruence**: Whether policy outcomes match majority opinion
 
----
+The analysis covers eight distinct policy areas, with abortion policy provided as a fully documented case study.
 
-## Core Components (Abortion Case Study)
-
-- `Abortion_Data_Preprocessing.R`: Cleans and recodes raw survey data.
-- `Abortion_MRP.R`: Runs MRP to estimate state-level public opinion.
-- `Abortion_Merge.R`: Combines MRP estimates with policy outcomes.
-- `Abortion_Responsiveness.R`: Models the relationship between opinion and policy.
-- `Abortion_Congruence.R`: Calculates whether policy matches majority opinion.
-- `Compile_All_Policy_Results.R`: Summarizes results across all 8 policy areas.
+📄 **[Read the full thesis (PDF)](Persano_Policy_Responsiveness_Thesis.pdf)**
 
 ---
 
-## Adaptability
+## Repository Structure
 
-Each script is modular and reproducible, enabling easy substitution of topic-specific variables, datasets, and file paths. This design supports consistent comparative analysis across a wide range of policy areas.
-
-The pipeline can be adapted to new policy topics by updating input data and adjusting variable names or recoding logic in each script.
+```
+Policy-Responsiveness-Thesis/
+├── Original_Data/          # Raw datasets with documentation
+│   └── README.md           # Data sources and descriptions
+├── Scripts/                # R analysis pipeline
+│   ├── Abortion_Data_Preprocessing.R
+│   ├── Abortion_MRP.R
+│   ├── Abortion_Merge.R
+│   ├── Abortion_Responsiveness.R
+│   ├── Abortion_Congruence.R
+│   ├── Compile_All_Policy_Results.R
+│   └── README.md           # Script documentation
+├── Persano_Policy_Responsiveness_Thesis.pdf
+└── README.md
+```
 
 ---
 
-## Contribution
+## Methodology
 
-This project contributes to scholarship on **political representation**, **public opinion**, and **state policy outcomes**, offering a replicable, survey-based framework for evaluating whether and when governments respond to constituent preferences. The abortion policy case study provides a fully implemented example.
+### Data
+- **Survey Data:** [Specify sources, e.g., CCES, ANES, etc.]
+- **Policy Data:** [Specify sources]
+- **Demographic Data:** U.S. Census / ACS
+
+### Analysis Pipeline
+
+| Script | Purpose |
+|--------|---------|
+| `Abortion_Data_Preprocessing.R` | Cleans and recodes raw survey data |
+| `Abortion_MRP.R` | Estimates state-level opinion via MRP |
+| `Abortion_Merge.R` | Combines MRP estimates with policy outcomes |
+| `Abortion_Responsiveness.R` | Models opinion-policy relationship |
+| `Abortion_Congruence.R` | Calculates policy-opinion alignment |
+| `Compile_All_Policy_Results.R` | Aggregates results across all 8 policy areas |
+
+---
+
+## Replication
+
+Scripts are modular and designed for reproducibility. To adapt for other policy areas:
+
+1. Update input data paths
+2. Adjust variable names and recoding logic
+3. Run scripts in sequential order
+
+### Requirements
+- R (≥ 4.0)
+- Required packages: `tidyverse`, `brms`, `lme4`, [add others you use]
+
+---
+
+## Citation
+
+If you use this code or find this research helpful, please cite:
+
+```
+Persano, Jessica. 2025. "The Determinants of Policy Representation: Evaluating 
+the Role of Policy Type in the U.S. States." Honors Thesis, University of 
+California, Los Angeles.
+```
 
 ---
 
 ## Contact
 
-For questions, collaborations, or feedback, feel free to reach out:
+**Jessica Persano**  
+Predoctoral Research Fellow, Stanford Graduate School of Business
 
-- 📧 Email: [jessicapersano01@gmail.com](mailto:jessicapersano01@gmail.com)  
-- 🔗 LinkedIn: [linkedin.com/in/jessica-persano](https://www.linkedin.com/in/jessica-persano/)
+- 📧 jpersano@stanford.edu
+- 🔗 [jessicapersano.github.io](https://jessicapersano.github.io)
+- 💼 [LinkedIn](https://www.linkedin.com/in/jessica-persano/)
 
 ---
 
-*Expect frequent updates as I refine the analysis and expand coverage across additional policy domains.*
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
