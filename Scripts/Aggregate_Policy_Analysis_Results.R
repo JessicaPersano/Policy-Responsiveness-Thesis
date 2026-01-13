@@ -1,4 +1,3 @@
-#Load required libraries
 library(dplyr)
 library(readr)
 library(ggplot2)
@@ -74,18 +73,16 @@ print(congruence_summary)
 # Congruence Bar Graph
 # ==========================================
 
-# Define consistent serif theme
+# Set custom theme to match responsiveness plots
 custom_theme <- theme_minimal(base_family = "serif") +
   theme(
-    panel.grid.major = element_line(color = "gray80"),
-    panel.grid.minor = element_line(color = "gray90"),
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 13, face = "italic"),
     axis.title = element_text(size = 14),
     axis.text = element_text(size = 12),
-    panel.background = element_rect(fill = "white", color = NA),
-    panel.border = element_blank(),          
-    axis.line = element_blank()             
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    panel.grid.major = element_line(color = "gray80"),
+    panel.grid.minor = element_blank()
   )
 
 # Create the bar chart
@@ -93,22 +90,16 @@ ggplot(congruence_summary, aes(x = reorder(Policy_Label, -Percent_Congruent),
                                y = Percent_Congruent, fill = Policy_Type)) +
   geom_col(width = 0.7) +
   labs(
+    title = "Congruence by Policy Topic",
     x = "Policy Topic",
     y = "Percent of States Congruent with Majority Opinion",
     fill = "Policy Type"
   ) +
   scale_y_continuous(limits = c(0, 90), expand = c(0, 0)) +
-  scale_fill_manual(values = c("Moral" = "black", "Technical" = "gray80")) +
-  custom_theme +
-  theme(
-    axis.text.x = element_text(size = 12, color = "gray20"),   # darker bar labels
-    axis.title.x = element_text(margin = margin(t = 10)),      # more vertical spacing
-    legend.title = element_text(size = 14),                    # slightly larger legend title
-    legend.text = element_text(size = 13)                      # slightly larger legend items
-  )
+  scale_fill_manual(values = c("Moral" = "#3f3f3f", "Technical" = "#d9d9d9")) +
+  custom_theme
 
-# Save output
-ggsave("congruence_bar_chart.pdf", width = 8.6, height = 6, device = cairo_pdf)
+ggsave("new_congruence_bar_chart.png", width = 9, height = 6)
 
 # ==========================================
 # Responsiveness Summary Table
